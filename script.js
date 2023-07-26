@@ -1,6 +1,7 @@
 const mario = document.querySelector(".mario");
 const pipe = document.querySelector(".pipe");
-const contador = document.querySelector(".pontuacao");
+const restartImage = document.querySelector(".restart-img")
+const restartText = document.querySelector(".restart-text")
 
 let isGameOver = false;
 let isJumping = false;
@@ -23,7 +24,9 @@ const checkColision = () => {
 
   if (pipePosition <= 98 && pipePosition > 0 && marioHeight < 110) {
     isGameOver = true;
-    pipe.style.animation = "none";
+    restartImage.style.display = "block"
+    restartText.style.display = "block"
+    pipe.style.animation = "block";
     pipe.style.left = `${pipePosition}px`;
 
     mario.style.bottom = `${marioHeight}px`;
@@ -33,9 +36,6 @@ const checkColision = () => {
     mario.style.left = "31px";
 
     cancelAnimationFrame(loopFinish);
-  } else if (pipePosition <= 0 && !isGameOver && isJumping === false) {
-    pontuacao += 1;
-    contador.innerHTML = pontuacao;
   }
 
   loopFinish = requestAnimationFrame(checkColision);
@@ -53,6 +53,8 @@ document.addEventListener("keydown", (event) => {
   console.log(event.key);
   if (event.key === "Enter") {
     pipe.style.animation = "";
+    restartImage.style.display = "none"
+    restartText.style.display = "none"
 
     setTimeout(() => {
       pipe.style.width = "pipe-animation 1.5s linear infinite";
@@ -67,9 +69,7 @@ document.addEventListener("keydown", (event) => {
   isGameOver = false
   isJumping = false
   pontuacao = 0
-  contador.innerHTML = pontuacao
   gameLoop()
-
 
   if (event.key === " ") {
     jump();

@@ -57,6 +57,26 @@
     bottom: 0px;
 }
 
+.restart-img {
+    display: none;
+    position: absolute;
+    width: 250px;
+    left: 40%;
+    bottom: 35%;
+    transition: .5s all;
+}
+
+.restart-text {
+    display: none;
+    position: absolute;
+    left: 39%;
+    bottom: 40%;
+    font-family: sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
 .jump {
     animation: mario-jump 500ms ease-out;
 }
